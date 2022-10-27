@@ -27,5 +27,12 @@ public class CryptoUtils {
         var base64Encoder = Base64.getEncoder();
 
     }
-    
+
+    public static String getDigest(String data, byte[] salt){
+
+    }
+
+    public static byte[] getSalt(){
+        
+    }
 }
