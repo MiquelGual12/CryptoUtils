@@ -28,11 +28,27 @@ public class CryptoUtils {
 
     }
 
-    public static String getDigest(String data, byte[] salt){
+    public static String getDigest(String data, byte[] salt) throws NoSuchAlgorithmException {
+        var dataBytes = data.getBytes();
 
+        var messageDigest = MessageDigest.getInstance("SHA-256");
+
+        messageDigest.update(salt);
+        var digest = messageDigest.digest(dataBytes);
+
+        var base64Encoder = Base64.getEncoder();
+
+        return base64Encoder.encodeToString(digest);
     }
 
     public static byte[] getSalt(){
-        
+        var secureRandom = new SecureRandom();
+
+        var salt = new byte[16];
+        secureRandom.nextBytes(salt);
+
+        return salt;
     }
+
+    
 }
